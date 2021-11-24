@@ -20,11 +20,13 @@ class Controller():
 
 
 def print_header() -> None:
-    ls_cols = ["[ID]", "[Subject]", "[Requester]", "[Created]"]
-    fmt_template = "{:>4} {:<40} {:20} {:16}"  # set fixed col width
-    header = fmt_template.format(*ls_cols)
+    ls_cols = ["[ID]", "[Subject]", "[Requester]",
+               "[Created]", "[Group]", "[Assignee]"]
+    # set fixed col width
+    s_fmt_template = "{:>4} {:<40} {:<20} {:<20} {:<10} {:<20}"
+    s_header = s_fmt_template.format(*ls_cols)
 
-    print(header)
+    print(s_header)
 
 
 def print_ticket(ticket: Ticket) -> None:
@@ -33,8 +35,10 @@ def print_ticket(ticket: Ticket) -> None:
         s_subject = s_subject[:37] + "..."  # shorten subject to 40 chars
     s_date = ticket.created.strftime("%m/%d/%Y %H:%M")  # format date
 
-    ls_cols = [ticket.id, s_subject, ticket.requester.name, s_date]
-    s_fmt_template = "{:>4} {:<40} {:20} {:16}"  # set fixed col width
+    ls_cols = [ticket.id, s_subject, ticket.requester.name,
+               s_date, ticket.group.name, ticket.assignee.name]
+    # set fixed col width
+    s_fmt_template = "{:>4} {:<40} {:<20} {:<20} {:<10} {:<20}"
     s_line = s_fmt_template.format(*ls_cols)
 
     print(s_line)
