@@ -40,8 +40,9 @@ class APIManager:
         if not config.creds or not config.creds['email'] or not config.creds['subdomain'] or not config.creds['token']:
             raise Exception("Credentials not set in config.py")
 
+    # sends a GET request to the specified API endpoint or URL
     def send_request(self, s_endpoint=None, s_url=None) -> dict:
-        assert s_endpoint or s_url, "Must provide either an API endpoint or a url"
+        assert s_endpoint or s_url, "Must provide either an API endpoint or a URL"
 
         if not s_url:
             s_url = URL_TEMPLATE.format(config.creds['subdomain'], s_endpoint)
@@ -50,6 +51,7 @@ class APIManager:
 
         r = requests.get(s_url, auth=t_auth)
 
+        # handle errors
         if r.status_code == 401:
             raise Exception("Invalid credentials")
         elif r.status_code == 403:

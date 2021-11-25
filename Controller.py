@@ -37,7 +37,8 @@ class Controller:
                 i_page_num += 1
                 curr_page = self.api_manager.get_page(
                     s_url=curr_page.next_page_url, page_size=self.page_size)
-                print_page(curr_page, i_page_num, i_total_pages, i_total_tickets)
+                print_page(curr_page, i_page_num,
+                           i_total_pages, i_total_tickets)
             elif s_usr_in == 'p':
                 if not (curr_page.has_prev() and i_page_num > 1):
                     print("No previous page")
@@ -45,7 +46,8 @@ class Controller:
                 i_page_num -= 1
                 curr_page = self.api_manager.get_page(
                     s_url=curr_page.prev_page_url, page_size=self.page_size)
-                print_page(curr_page, i_page_num, i_total_pages, i_total_tickets)
+                print_page(curr_page, i_page_num,
+                           i_total_pages, i_total_tickets)
             elif s_usr_in == 'b':
                 break
             else:
@@ -97,5 +99,8 @@ def print_page(p: Page, page_num, total_pages, total_tickets) -> None:
     print("[Page {}/{}, {} tickets total, {} on this page]".format(page_num,
           total_pages, total_tickets, len(p.ticket_list)))
     print_header()
-    for ticket in p.ticket_list:
-        print_ticket(ticket)
+    if p.is_empty():
+        print("No tickets to display")
+    else:
+        for ticket in p.ticket_list:
+            print_ticket(ticket)

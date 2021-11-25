@@ -11,6 +11,7 @@ Use git to clone this repository to a local directory of your choice.
 
 ```bash
 git clone https://github.com/maximg0r/ZendeskCC.git
+cd ZendeskCC
 pip install -r requirements.txt
 ```
 
@@ -19,5 +20,5 @@ pip install -r requirements.txt
 Set your own auth credentials (API token) in config.py, then use
 
 ```bash
-python Main.py
+python TicketViewer.py
 ```
