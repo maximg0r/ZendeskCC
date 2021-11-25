@@ -82,12 +82,18 @@ def print_header() -> None:
 
 def print_ticket(t: Ticket) -> None:
     s_subject = t.subject
-    if (len(s_subject) > 37):
+    if (s_subject and len(s_subject) > 37):
         s_subject = s_subject[: 37] + "..."  # shorten subject to 40 chars
-    s_date = t.created.strftime("%m/%d/%Y %H:%M")  # format date
+    s_date = t.created
+    if (s_date):
+        s_date = t.created.strftime("%m/%d/%Y %H:%M")  # format date
 
-    ls_cols = [t.id, s_subject, t.requester_id,
-               s_date, t.group_id, t.status]
+    ls_cols = [t.id or '-',
+               s_subject or '-',
+               t.requester_id or '-',
+               s_date or '-',
+               t.group_id or '-',
+               t.status or '-']
     # set fixed col width
     s_fmt_template = "{:>4} {:<40} {:<20} {:<20} {:<20} {:<10}"
     s_line = s_fmt_template.format(*ls_cols)
