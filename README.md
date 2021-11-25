@@ -42,17 +42,17 @@ python tests.py
 ## Design overview
 
 The program consists of 3 modules:
-* UI module
+* <b>UI module</b>
     - Responsible for top-level program navigation and running the main I/O loop.
     - UI.run() is called from TicketViewer.main (the main entrypoint) to start the program loop.
-    - Calls methods in the Controller module correspoinding to the required operations.
+    - Calls methods in the Controller module corresponding to the required operations.
 
-* Controller module
+* <b>Controller module</b>
     - Responsible for executing the required operations (including doing operation-specific I/O).
     - The two main operations it implements are list_tickets() and view_ticket().
     - Calls methods in the APIManager to perform these operations.
 
-* APIManager module
+* <b>APIManager module</b>
     - Responsible for making requests to the Zendesk API, processing the responses, and returning the results.
     - The three main operations it implements are get_ticket_count(), get_page(), and get_ticket_by_id().
     - Also contains the definitions of Ticket and Page classes, which are wrappers for relevant fields in the raw json objects.

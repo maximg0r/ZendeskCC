@@ -53,7 +53,7 @@ class APIManager:
 
         # handle errors
         if r.status_code == 401:
-            raise Exception("Invalid credentials")
+            raise Exception("Invalid credentials (see config.py)")
         elif r.status_code == 403:
             raise Exception("Access denied")
         elif r.status_code == 404:
