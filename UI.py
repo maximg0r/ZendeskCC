@@ -22,14 +22,19 @@ class UI:
         print("1. List tickets")
         print("2. View ticket")
         print("3. Exit\n")
-
         s_usr_in = input("Please enter your selection: ")
 
         while s_usr_in != "3":
             if s_usr_in == "1":
-                self.controller.list_tickets()
+                try:
+                    self.controller.list_tickets()
+                except Exception as e:
+                    print("Error: {}".format(e))
             elif s_usr_in == "2":
-                self.controller.view_ticket()
+                try:
+                    self.controller.view_ticket()
+                except Exception as e:
+                    print("Error: {}".format(e))
             else:
                 print("Invalid selection")
 
